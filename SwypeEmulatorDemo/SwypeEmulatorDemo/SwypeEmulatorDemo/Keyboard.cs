@@ -1,4 +1,13 @@
-﻿using System;
+﻿// ***
+// *
+// * Aurality Studios
+// *
+// * Swype Algorithm Demo
+// *
+// * Zackary Misso & Tyler Young
+// *
+// ***
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +23,6 @@ namespace SwypeEmulatorDemo
         private Key[] keys;
         private SpriteFont font;
         private Texture2D keyTexture;
-        private KeyController keyController;
 
         public Keyboard()
         {
@@ -64,6 +72,16 @@ namespace SwypeEmulatorDemo
         public Key[] getKeys()
         {
             return keys;
+        }
+
+        public void setFont(SpriteFont param)
+        {
+            font = param;
+        }
+
+        public void setTexture(Texture2D param)
+        {
+            keyTexture = param;
         }
     }
 }

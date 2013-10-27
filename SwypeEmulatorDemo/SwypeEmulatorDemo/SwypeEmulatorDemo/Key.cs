@@ -1,4 +1,13 @@
-﻿using System;
+﻿// ***
+// *
+// * Aurality Studios
+// *
+// * Swype Algorithm Demo
+// *
+// * Zackary Misso & Tyler Young
+// *
+// ***
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +43,7 @@ namespace SwypeEmulatorDemo
         public void draw(SpriteBatch spriteBatch,Texture2D tex,SpriteFont font)
         {
             spriteBatch.Draw(tex, position, Color.White);
-            spriteBatch.DrawString(font, value, new Vector2(position.X + 10, position.Y + 10), Color.White);
+            spriteBatch.DrawString(font, value, new Vector2(position.X + 8, position.Y + 2), Color.White);
         }
 
         public String getValue()

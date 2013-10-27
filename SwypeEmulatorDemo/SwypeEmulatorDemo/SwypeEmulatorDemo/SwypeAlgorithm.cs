@@ -1,4 +1,13 @@
-﻿using System;
+﻿// ***
+// *
+// * Aurality Studios
+// *
+// * Swype Algorithm Demo
+// *
+// * Zackary Misso & Tyler Young
+// *
+// ***
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,13 +26,14 @@ namespace SwypeEmulatorDemo
 
         public SwypeAlgorithm()
         {
-            // implement
+            // implement dictionary
         }
 
         // this is the code that is important
         public void algorithm(String param)
         {
             // implement
+            Console.WriteLine("This is the predicted string : "+param);
         }
     }
 }

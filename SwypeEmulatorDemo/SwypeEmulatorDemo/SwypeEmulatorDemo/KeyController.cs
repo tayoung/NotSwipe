@@ -1,4 +1,13 @@
-﻿using System;
+﻿// ***
+// *
+// * Aurality Studios
+// *
+// * Swype Algorithm Demo
+// *
+// * Zackary Misso & Tyler Young
+// *
+// ***
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

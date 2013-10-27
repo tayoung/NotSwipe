@@ -1,4 +1,13 @@
-﻿using System;
+﻿// ***
+// *
+// * Aurality Studios
+// *
+// * Swype Algorithm Demo
+// *
+// * Zackary Misso & Tyler Young
+// *
+// ***
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,10 +26,9 @@ namespace SwypeEmulatorDemo
         private Vector2 cursorPosition;
         private Texture2D tex;
 
-        public LineController(Texture2D param)
+        public LineController()
         {
             points = new ArrayList();
-            tex = param;
         }
 
         public Vector2 getLastPoint()
@@ -53,6 +61,11 @@ namespace SwypeEmulatorDemo
                 float dist = Vector2.Distance(t1, t2);
                 spriteBatch.Draw(tex, new Rectangle((int)t2.X, (int)t2.Y, (int)dist, 1), null, Color.White, angle, Vector2.Zero, SpriteEffects.None, 0);
             }
+        }
+
+        public void setTexture(Texture2D param)
+        {
+            tex = param;
         }
     }
 }

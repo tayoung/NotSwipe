@@ -1,3 +1,12 @@
+// ***
+// *
+// * Aurality Studios
+// *
+// * Swype Algorithm Demo
+// *
+// * Zackary Misso & Tyler Young
+// *
+// ***
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +30,7 @@ namespace SwypeEmulatorDemo
         private SwypeAlgorithm algorithmer;
         private MouseState mouseState;
         private MouseState previousMouseState;
-        private bool isClicking;
+        private bool isClicking; // do not know if this is needed or not 
 
         public Game1()
         {
@@ -29,6 +38,10 @@ namespace SwypeEmulatorDemo
             Content.RootDirectory = "Content";
             keyboard = new Keyboard();
             keyController = new KeyController();
+            lineController = new LineController();
+            algorithmer = new SwypeAlgorithm();
+            isClicking = false;
+            IsMouseVisible = true;
         }
 
         protected override void Initialize()
@@ -36,17 +49,16 @@ namespace SwypeEmulatorDemo
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Texture2D tex;
-            // TODO: use this.Content to load your game content here
-            lineController = new LineController(tex);
+            Texture2D line = Content.Load<Texture2D>("singlePix");
+            Texture2D keyImg = Content.Load<Texture2D>("key");
+            SpriteFont font = Content.Load<SpriteFont>("KeyFont");
+            keyboard.setFont(font);
+            keyboard.setTexture(keyImg);
+            lineController.setTexture(line);
         }
 
         protected override void UnloadContent()
