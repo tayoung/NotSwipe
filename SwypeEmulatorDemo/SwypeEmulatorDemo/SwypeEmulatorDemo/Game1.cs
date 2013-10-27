@@ -30,7 +30,6 @@ namespace SwypeEmulatorDemo
         private SwypeAlgorithm algorithmer;
         private MouseState mouseState;
         private MouseState previousMouseState;
-        private bool isClicking; // do not know if this is needed or not 
 
         public Game1()
         {
@@ -40,7 +39,6 @@ namespace SwypeEmulatorDemo
             keyController = new KeyController();
             lineController = new LineController();
             algorithmer = new SwypeAlgorithm();
-            isClicking = false;
             IsMouseVisible = true;
         }
 
@@ -73,10 +71,8 @@ namespace SwypeEmulatorDemo
             previousMouseState = mouseState;
             mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed)
-            {
                 if (lineController.addPoint(new Vector2(mouseState.X, mouseState.Y)))
                     keyController.addKey(keyboard.onClick(new Vector2(mouseState.X, mouseState.Y)));
-            }
             if (mouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed)
             {
                 algorithmer.algorithm(keyController.getCurrent());
