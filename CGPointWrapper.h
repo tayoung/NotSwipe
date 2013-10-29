@@ -1,4 +1,4 @@
-@interface CGPointWrapper : NSObject {
+interface CGPointWrapper : Object {
     CGPoint point;
 }
 @property(nonatomic, assign) CGPoint point;

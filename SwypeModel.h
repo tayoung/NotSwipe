@@ -1,8 +1,6 @@
-#import "SwypeModel.h"
-#import "CGPointWrapper.h"
+using CGPointWrapper
 
-@interface SwypeModel : NSObject {
+interface SwypeModel : Object {
 }
-+(NSArray *)findBestMatches:(NSString *)input forPoints:(NSArray *)entrancePoints;
-+(void)updatePreference:(NSString*)str;
-@end
+public static object[]* findBestMatches(String* input, object[]* entrancePoints);
+public static void updatePreference(String* str);

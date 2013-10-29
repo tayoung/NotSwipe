@@ -1,4 +1,4 @@
-#import "CGPointWrapper.h"
+using "CGPointWrapper.h"
 
 @implementation CGPointWrapper
 @synthesize point;
