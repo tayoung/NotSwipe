@@ -23,7 +23,8 @@ namespace SwypeEmulatorDemo
     {
         private ArrayList dictionary; // assumed to be in alphabetical order
         private double[][] mat; // matrix for algorithm
-        private double[] wei; // not really sure why this is needed
+        // not sure why the weights are needed
+        private double[] wei; // weights for the angles
 
         public SwypeAlgorithm()
         {
@@ -34,17 +35,19 @@ namespace SwypeEmulatorDemo
         }
 
         /////////////////////////////////// MAIN ALGORITHM /////////////////////////////////////
-        public void algorithm(String param)
+        public void algorithm(String param, ArrayList vectors)
         {
             // initialization code
-            ArrayList possible = new ArrayList();
-            dictionary = dictionarySort(dictionary);
-            // implement
-            Console.WriteLine("This is the predicted string : "+param);
+            dictionary = genericSort(dictionary);
+            ArrayList possibilities = findBestMatches(param, vectors)
+            Console.WriteLine("This is the user input : " + param);
+            Console.WriteLine("This is the predicted matches : ");
+            for (int i = 0; i < possibilities.Count; i++)
+                Console.WriteLine(i + ": " + possibilities[i]);
         }
         ////////////////////////////////////////////////////////////////////////////////////////
 
-        private ArrayList dictionarySort(ArrayList list) // sorts dictionary in ascending order
+        private ArrayList genericSort(ArrayList list) // sorts dictionary in ascending order
         {
             if (list.Count == 0)
                 return list;
@@ -55,7 +58,7 @@ namespace SwypeEmulatorDemo
                 a.Add(list[i]);
             for (; i < list.Count; i++)
                 b.Add(list[i]);
-            return merge(dictionarySort(a), dictionarySort(b));
+            return merge(genericSort(a), genericSort(b));
         }
 
         private ArrayList merge(ArrayList a, ArrayList b) // assumed to be is sorted order
@@ -68,9 +71,9 @@ namespace SwypeEmulatorDemo
                     answer.Add(b[bc++]);
                 else if (bc == b.Count)
                     answer.Add(a[ac++]);
-                else if (((String)a[ac]).CompareTo((String)b[bc]) > 0)
+                else if (((IComparable)a[ac]).CompareTo((IComparable)b[bc]) > 0)
                     answer.Add(b[bc++]);
-                else if (((String)a[ac]).CompareTo((String)b[bc]) < 0)
+                else if (((IComparable)a[ac]).CompareTo((IComparable)b[bc]) < 0)
                     answer.Add(a[ac++]);
                 else
                 {
@@ -161,6 +164,9 @@ namespace SwypeEmulatorDemo
         }
 
         private ArrayList findBestMatches(String input,ArrayList points){
+            // this is the main algorithm. It has room to be optimized a lot but
+            // theoretically it should work. Although, I do not understand it
+            // completely yet.
             int begin = input[0] - 97;
             int end = input[input.Length-1] - 97;
             // using dictionary instance variable as the list of words
@@ -174,9 +180,20 @@ namespace SwypeEmulatorDemo
             for (int i = 0; i < dictionary.Count; i++){
                 String word = (String)dictionary[i];
                 if (matches(input,word)){
-                    // implement
+                    // This may not be accurate because of not being able to access
+                    // the SwypeDictionaryObject class. We will also have to make a
+                    // SwypeDictionaryObject class (I need visual studios)
+                    DictionaryObject tmp = new DictionaryObject();
+                    tmp.setWeight((dictionary.Count-i)/dictionary.Count*180+wlcs(input, word));
+                    tmp.setWord(word);
+                    possibilities.add(tmp);
                 }
             }
+            ArrayList sort = genericSort(possibilities);
+            ArrayList answers = new ArrayList();
+            for (DictionaryObject obj in sort)
+                answers.Add(obj.getWord());
+            return answers;
         }
     }
 }
