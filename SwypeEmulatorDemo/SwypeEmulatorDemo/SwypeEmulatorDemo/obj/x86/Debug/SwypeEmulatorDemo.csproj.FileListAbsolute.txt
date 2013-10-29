@@ -7,3 +7,7 @@ C:\Users\Zack Misso\Documents\ProgrammingProjects\NotSwipe\SwypeEmulatorDemo\Swy
 C:\Users\Zack Misso\Documents\ProgrammingProjects\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\obj\x86\Debug\SwypeEmulatorDemo.pdb
 C:\Users\Zack Misso\Documents\ProgrammingProjects\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\key.xnb
 C:\Users\Zack Misso\Documents\ProgrammingProjects\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\singlePix.xnb
+C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\obj\x86\Debug\SwypeEmulatorDemo.csprojResolveAssemblyReference.cache
+C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\obj\x86\Debug\SwypeEmulatorDemo.exe
+C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\obj\x86\Debug\SwypeEmulatorDemo.pdb
