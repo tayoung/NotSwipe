@@ -87,9 +87,6 @@ public class NotSwipeModel {
 		
 	}
 	
-	// Finds the angle differences for all angles in a list.
-
-	
 	
 	// Helper functions
 	
