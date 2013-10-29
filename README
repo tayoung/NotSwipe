@@ -1,1 +1,29 @@
-iSwipe For iOS
+An implementation of a Swype-like clone in C# for Unity.
+
+
+This project is a branch of iSwipe for iOS by wyndwarrior. The
+company I work for have been looking for a Swype alternative to
+use in projecteir.
+
+We have decided to use this implementation not only because of
+licensing costs, but mainly because we have access to source code
+which we can modify and improve for our own purposes. Because this
+is not Swype, and we don't want to confuse people looking for the
+real Swype, I have decided to call this project NotSwipe.
+
+The original source was in Objective-C, and made heavy use of
+Apple's libraries. Because we are working with Unity, we chose
+to use C# and make use of similar functions it provides for us.
+
+Our goal is to have a Swype-like system for an on-screen keyboard
+in Unity. Currently, our focus is on Windows due to the nature of
+projecteir. However, our implementations in NotSwipe should work
+for any system supported by Unity.
+
+
+Credits:
+wyndwarrior - Author of the original iSwipe.
+
+All project contributors:
+Tyler A. Young
+Zack Misso
