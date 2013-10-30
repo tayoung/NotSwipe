@@ -17,11 +17,33 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+class SwipeDictionaryObject : IComparable {
+	// Data
+	public string word;
+	public float weight;
+	
+	// Overrides
+	
+	// CompareTo: Used for sorting.
+	public int CompareTo (object obj) {
+		if (obj == null)
+			return 1;
+		
+		SwipeDictionaryObject otherDict = obj as SwipeDictionaryObject;
+		if (otherDict != null) {
+			return this.weight.CompareTo (otherDict.weight);
+		} else {
+			throw new ArgumentException ("Object being compared not a SwipeDictionaryObject");
+		}
+	}
+	
+}
+
 namespace SwypeEmulatorDemo
 {
     public class SwypeAlgorithm
     {
-        private ArrayList dictionary; // assumed to be in alphabetical order
+        private List<string> dictionary; // assumed to be in alphabetical order
         private double[][] mat; // matrix for algorithm
         // not sure why the weights are needed
         private double[] wei; // weights for the angles
@@ -38,8 +60,8 @@ namespace SwypeEmulatorDemo
         public void algorithm(String param, ArrayList vectors)
         {
             // initialization code
-            dictionary = genericSort(dictionary);
-            ArrayList possibilities = findBestMatches(param, vectors)
+            dictionary.Sort();
+            List<string> possibilities = findBestMatches(param, vectors);
             Console.WriteLine("This is the user input : " + param);
             Console.WriteLine("This is the predicted matches : ");
             for (int i = 0; i < possibilities.Count; i++)
@@ -47,61 +69,27 @@ namespace SwypeEmulatorDemo
         }
         ////////////////////////////////////////////////////////////////////////////////////////
 
-        private ArrayList genericSort(ArrayList list) // sorts dictionary in ascending order
-        {
-            if (list.Count == 0)
-                return list;
-            int i = 0;
-            ArrayList a = new ArrayList();
-            ArrayList b = new ArrayList();
-            for (; i < list.Count / 2; i++)
-                a.Add(list[i]);
-            for (; i < list.Count; i++)
-                b.Add(list[i]);
-            return merge(genericSort(a), genericSort(b));
-        }
-
-        private ArrayList merge(ArrayList a, ArrayList b) // assumed to be is sorted order
-        {
-            ArrayList answer = new ArrayList();
-            int ac=0; int bc=0;
-            for (;ac+bc < a.Count + b.Count;)
-            {
-                if (ac == a.Count)
-                    answer.Add(b[bc++]);
-                else if (bc == b.Count)
-                    answer.Add(a[ac++]);
-                else if (((IComparable)a[ac]).CompareTo((IComparable)b[bc]) > 0)
-                    answer.Add(b[bc++]);
-                else if (((IComparable)a[ac]).CompareTo((IComparable)b[bc]) < 0)
-                    answer.Add(a[ac++]);
-                else
-                {
-                    answer.Add(a[ac++]);
-                    bc++;
-                }
-            }
-            return answer;
-        }
-
         ///////////////////// METHODS COPIED DIRECTLY FROM SWYPEMODEL.M ///////////////////////
         ///////////////////// I own none of this code. ////////////////////////////////////////
-
-        private double wlcs(String input,String word){
-            for (int i = 0; i <= word.Length; i++){
-                mat[0][i] = 0;
-                mat[i][0] = 0;
-            }
-            for (int i = 1; i <= word.Length; i++)
-                for (int j = 1; j <= input.Length; j++){
-                    if (input[i] == word[j])
-                        mat[i][j] = Math.MAX(mat[i-1][j-1]+wei[j-1], mat[i-1][j]-30);
-                    else
-                        mat[i][j] = Math.MAX(mat[i-1][j], mat[i][j-1]);
-            return mat[word.Length][input.Length];
-        }
-
-        private bool mathches(String input,String word){
+		
+		//
+		// Tyler's Code
+        private static float wlcs (string input, string word) {
+			for (int i=1; i <= word.Length; i++) {
+				for (int j=1; j <= input.Length; j++) {
+				
+					if (input [j - 1] == word [i - 1])
+						mat [i, j] = Math.Max (mat [i - 1, j - 1] + wei [j - 1], mat [i - 1, j] - 30);
+					else
+						mat [i, j] = Math.Max (mat [i - 1, j], mat [i, j - 1]);
+				}
+			}
+			return mat [word.Length, input.Length];
+	    }
+		
+		// 
+		// Zack's code
+        private bool matches(String input, String word){
             int j = 0; i = 0;
             for (; i<input.Length && j<word.Length; i++)
                 if (input[i]==word[j])
@@ -110,90 +98,78 @@ namespace SwypeEmulatorDemo
             return j==word.Length;
         }
 
-        private ArrayList findAnglesForPoints(Vector2[] points){
-            ArrayList temp = new ArrayList();
-            for (int i = 1; i<points.Count; i++)
-                temp.Add(angleFromPoints(points[i-1],points[i]));
-            return temp;
-        }
-
-        private double angleFromPoints(Vector2 start,Vector2 end){
-            if(start.X <= end.X && start.Y <= end.Y){
-                double opp = end.Y - start.Y;
-                double adj = end.X - start.X;
-                if (adj==0)
-                    return 90;
-                return toDeg(Math.Atan(opp/adj));
-            } else if (start.X >= end.X && start.Y <= end.Y){
-                double opp = end.Y - start.Y;
-                double adj = start.X - end.X;
-                if (adj == 0)
-                    return 90;
-                return 180 - toDeg(Math.Atan(opp/adj));
-            } else if (start.X >= end.X && start.Y >= end.Y){
-                double opp = start.Y - end.Y;
-                double adj = start.X - end.X;
-                if (adj==0)
-                    return 270;
-                return 180 + toDeg(Math.Atan(opp/adj));
-            } else if (start.X <= end.X && start.Y >= end.Y){
-                double opp = start.Y - end.Y;
-                double adj = end.X - start.X;
-                if (adj==0)
-                    return 270;
-                return return 360 - toDeg(Math.Atan(opp/adj));
-            }
-            return 0;
-        }
-
-        private ArrayList findAngleDifferences(ArrayList points){
-            ArrayList temp = new ArrayList();
-            for (int i = 1; i < points.Count; i++)
-                temp.Add(angleFromPoints((Vector2)points[i-1], (Vector2)points[i]));
-            return temp;
-        }
-
-        private double toDeg(double param){
-            return param / Math.PI() * 180;
-        }
-
-        private double minAngle(double a1, double a2){
-            double min = Math.MIN(a1,a2);
-            double max = Math.MAX(a1,a2);
-            return Math.MIN(max-min,min-max+360);
-        }
-
-        private ArrayList findBestMatches(String input,ArrayList points){
+        private ArrayList findBestMatches(String input, ArrayList points){
             // this is the main algorithm. It has room to be optimized a lot but
             // theoretically it should work. Although, I do not understand it
             // completely yet.
-            int begin = input[0] - 97;
-            int end = input[input.Length-1] - 97;
-            // using dictionary instance variable as the list of words
-            ArrayList weights = findAngleDifferences(findAnglesForPoints(points));
-            for (int i = 0; i < weights.Count; i++)
-                wei[i+1] = (double)weights[i];
-            wei[0] = 180;
-            wei[weights.Count+1] = 180;
-            // This code could be easily optimized by using a binary search. TODO later
-            ArrayList possibilities = new ArrayList();
-            for (int i = 0; i < dictionary.Count; i++){
-                String word = (String)dictionary[i];
-                if (matches(input,word)){
-                    // This may not be accurate because of not being able to access
-                    // the SwypeDictionaryObject class. We will also have to make a
-                    // SwypeDictionaryObject class (I need visual studios)
-                    DictionaryObject tmp = new DictionaryObject();
-                    tmp.setWeight((dictionary.Count-i)/dictionary.Count*180+wlcs(input, word));
-                    tmp.setWord(word);
-                    possibilities.add(tmp);
-                }
-            }
-            ArrayList sort = genericSort(possibilities);
-            ArrayList answers = new ArrayList();
-            for (DictionaryObject obj in sort)
-                answers.Add(obj.getWord());
-            return answers;
+            int begin = input [0] - '0';
+			int end = input [input.Length] - '0';
+			// I honestly don't know what to do with this since we don't know the file format.
+			string path = String.Format ("/var/swype/English/{0}-{1}.plist", new int[]{begin,end});
+			// Here we need to open the file and put it in the words List, but see above.
+			List<string> words = new List<string> ();
+			List<float> weights = findAngleDifferences (findAnglesForPoints (entrancePoints));
+			
+			for (int i=0; i < weights.Count; i++) {
+				wei [i + 1] = weights [i];
+			}
+			wei[0] = 180;
+			wei[weights.Count + 1] = 180;
+			List<SwipeDictionaryObject> arr = new List<SwipeDictionaryObject> ();
+			
+			// TODO: Optimiaztion, possibly using binary search.
+			for(int i=0; i < words.Count; i++) {
+				string word = words [i];
+				if(matches(input, word)) {
+					SwipeDictionaryObject tmp = new SwipeDictionaryObject ();
+					tmp.weight = (words.Count - i) / (words.Count * 180 + wlcs(input, word));
+					tmp.word = word;
+					arr.Add (tmp);
+				}
+			}
+			
+			arr.Sort ();
+			
+			// Return sorted list of results.
+			// TODO: Can probably do this at the same time as the dictionary object construction.
+			List<string> results = new List<string> ();
+			foreach(SwipeDictionaryObject o in arr) {
+				results.Add (o.word);
+			}
+			
+			return results;
         }
+		/***************** Helper functions *****************/
+	
+		// Returns list of angles between each adjacent vector.
+		private static List<float> findAnglesForPoints (List<Vector2> entrancePoints) {
+			List<float> results = new List<float> ();
+			
+			for (int i=1; i < entrancePoints.Count; i++) {
+				Vector2 t1 = entrancePoints [i - 1];
+				Vector2 t2 = entrancePoints [i];
+				results.Add (Vector2.Angle (t1, t2));	// Unity library
+			}
+			return results;
+		}
+		
+		// Returns a list of all differences in the angles.
+		private static List<float> findAngleDifferences (List<float> angles) {
+			List<float> results = new List<float> ();
+			
+			for (int i=1; i < angles.Count; i++) {
+				float t1 = angles [i - 1];
+				float t2 = angles [i];
+				results.Add (minAngle (t1, t2));
+			}
+			return results;
+		}
+	
+		// Self-explanatory name.
+		private static float minAngle (float a1, float a2) {
+			float min = Math.Min (a1, a2);
+			float max = Math.Max (a1, a2);
+			return Math.Max (max - min, min - max + 360);
+		}
     }
 }
