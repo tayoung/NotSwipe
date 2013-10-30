@@ -11,3 +11,12 @@ C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\Swype
 C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\obj\x86\Debug\SwypeEmulatorDemo.exe
 C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\obj\x86\Debug\SwypeEmulatorDemo.pdb
+C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\obj\x86\Debug\SwypeEmulatorDemo.csprojResolveAssemblyReference.cache
+C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\obj\x86\Debug\SwypeEmulatorDemo.exe
+C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\KeyFont.xnb
+C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\key.xnb
+C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\singlePix.xnb
+C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\SwypeEmulatorDemo.exe
+C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\SwypeEmulatorDemo.pdb
+C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\obj\x86\Debug\SwypeEmulatorDemo.pdb

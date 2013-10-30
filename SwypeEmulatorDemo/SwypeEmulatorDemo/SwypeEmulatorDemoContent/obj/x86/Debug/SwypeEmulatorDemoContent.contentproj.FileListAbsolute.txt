@@ -1,2 +1,3 @@
 C:\Users\Zack Misso\Documents\ProgrammingProjects\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemoContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemoContent\obj\x86\Debug\SwypeEmulatorDemoContent.contentprojResolveAssemblyReference.cache
+C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemoContent\obj\x86\Debug\SwypeEmulatorDemoContent.contentprojResolveAssemblyReference.cache

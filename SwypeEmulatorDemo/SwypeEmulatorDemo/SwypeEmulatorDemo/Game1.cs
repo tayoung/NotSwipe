@@ -75,7 +75,7 @@ namespace SwypeEmulatorDemo
                     keyController.addKey(keyboard.onClick(new Vector2(mouseState.X, mouseState.Y)));
             if (mouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed)
             {
-                algorithmer.algorithm(keyController.getCurrent());
+                algorithmer.algorithm(keyController.getCurrent(),lineController.getPoints());
                 lineController.clear();
                 keyController.clear();
             }

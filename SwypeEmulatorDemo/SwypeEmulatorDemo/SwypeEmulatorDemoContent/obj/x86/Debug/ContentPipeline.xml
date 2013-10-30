@@ -7,8 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\KeyFont.xnb</Output>
-      <Time>2013-10-28T20:40:15.8218945-05:00</Time>
+      <Output>C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\KeyFont.xnb</Output>
+      <Time>2013-10-29T19:00:26.1582439-05:00</Time>
     </Item>
     <Item>
       <Source>key.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\key.xnb</Output>
-      <Time>2013-10-28T20:40:15.8538964-05:00</Time>
+      <Output>C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\key.xnb</Output>
+      <Time>2013-10-29T19:00:26.160247-05:00</Time>
     </Item>
     <Item>
       <Source>singlePix.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\singlePix.xnb</Output>
-      <Time>2013-10-28T20:40:15.9259005-05:00</Time>
+      <Output>C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\singlePix.xnb</Output>
+      <Time>2013-10-29T19:00:26.191285-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -34,10 +34,10 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemoContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemoContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Jesuszilla\workspace\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemoContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemoContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Aurality Studios\NotSwipe\SwypeEmulatorDemo\SwypeEmulatorDemo\SwypeEmulatorDemo\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -66,7 +66,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2013-05-28T22:02:14.0740245-05:00</Value>
+        <Value>2013-10-29T19:53:03.343569-05:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

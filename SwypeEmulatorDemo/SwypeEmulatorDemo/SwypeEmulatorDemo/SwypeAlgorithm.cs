@@ -44,24 +44,27 @@ namespace SwypeEmulatorDemo
     public class SwypeAlgorithm
     {
         private List<string> dictionary; // assumed to be in alphabetical order
-        private double[][] mat; // matrix for algorithm
-        // not sure why the weights are needed
-        private double[] wei; // weights for the angles
+        private float[,] mat; // matrix for algorithm
+        // not sure why the weights are needed <--- Probably used to find closest matches.
+        private float[] wei; // weights for the angles
 
         public SwypeAlgorithm()
         {
-            mat = new double[300][300];
-            wei = new double[300];
-            dictionary = new ArrayList();
+            mat = new float[300, 300];
+            wei = new float[300];
+            dictionary = new List<string>();
             // add words to dictionary
         }
 
         /////////////////////////////////// MAIN ALGORITHM /////////////////////////////////////
-        public void algorithm(String param, ArrayList vectors)
+        public void algorithm(String param, List<Vector2> vectors)
         {
             // initialization code
+            dictionary.Add("hello");
             dictionary.Sort();
-            List<string> possibilities = findBestMatches(param, vectors);
+            List<string> possibilities = new List<String>();
+            if(param.Length > 0)
+                possibilities = findBestMatches(param, vectors);
             Console.WriteLine("This is the user input : " + param);
             Console.WriteLine("This is the predicted matches : ");
             for (int i = 0; i < possibilities.Count; i++)
@@ -74,14 +77,14 @@ namespace SwypeEmulatorDemo
 		
 		//
 		// Tyler's Code
-        private static float wlcs (string input, string word) {
+        private float wlcs (string input, string word) {
 			for (int i=1; i <= word.Length; i++) {
 				for (int j=1; j <= input.Length; j++) {
 				
 					if (input [j - 1] == word [i - 1])
-						mat [i, j] = Math.Max (mat [i - 1, j - 1] + wei [j - 1], mat [i - 1, j] - 30);
+						mat[i, j] = Math.Max (mat [i - 1, j - 1] + wei [j - 1], mat [i - 1, j] - 30);
 					else
-						mat [i, j] = Math.Max (mat [i - 1, j], mat [i, j - 1]);
+						mat[i, j] = Math.Max (mat [i - 1, j], mat [i, j - 1]);
 				}
 			}
 			return mat [word.Length, input.Length];
@@ -90,7 +93,7 @@ namespace SwypeEmulatorDemo
 		// 
 		// Zack's code
         private bool matches(String input, String word){
-            int j = 0; i = 0;
+            int j = 0, i = 0;
             for (; i<input.Length && j<word.Length; i++)
                 if (input[i]==word[j])
                     while (j<word.Length && input[i]==word[j])
@@ -98,16 +101,18 @@ namespace SwypeEmulatorDemo
             return j==word.Length;
         }
 
-        private ArrayList findBestMatches(String input, ArrayList points){
+        private List<string> findBestMatches(String input, List<Vector2> entrancePoints){
             // this is the main algorithm. It has room to be optimized a lot but
             // theoretically it should work. Although, I do not understand it
             // completely yet.
-            int begin = input [0] - '0';
-			int end = input [input.Length] - '0';
+            int begin = input[0] - 'a';
+			int end = input[input.Length-1] - 'a';
 			// I honestly don't know what to do with this since we don't know the file format.
-			string path = String.Format ("/var/swype/English/{0}-{1}.plist", new int[]{begin,end});
+			//string path = String.Format ("/var/swype/English/{0}-{1}.plist", new int[]{begin,end});
 			// Here we need to open the file and put it in the words List, but see above.
-			List<string> words = new List<string> ();
+
+            List<string> words = dictionary;//new List<string> (); // THIS IS TEMP
+
 			List<float> weights = findAngleDifferences (findAnglesForPoints (entrancePoints));
 			
 			for (int i=0; i < weights.Count; i++) {
@@ -140,6 +145,41 @@ namespace SwypeEmulatorDemo
 			return results;
         }
 		/***************** Helper functions *****************/
+
+        private static float angleFromPoints(Vector2 start,Vector2 end){
+            float opp, adj;
+            if(start.X <= end.X && start.Y <= end.Y){
+                opp = end.Y - start.Y;
+                adj = end.X - start.X;
+                if (adj==0)
+                    return 90;
+                return toDeg((float)Math.Atan(opp/adj));
+            } else if (start.X >= end.X && start.Y <= end.Y){
+                opp = end.Y - start.Y;
+                adj = start.X - end.X;
+                if (adj == 0)
+                    return 90;
+                return 180 - toDeg((float)Math.Atan(opp/adj));
+            } else if (start.X >= end.X && start.Y >= end.Y){
+                opp = start.Y - end.Y;
+                adj = start.X - end.X;
+                if (adj==0)
+                    return 270;
+                return 180 + toDeg((float)Math.Atan(opp/adj));
+            } else if (start.X <= end.X && start.Y >= end.Y){
+                opp = start.Y - end.Y;
+                adj = end.X - start.X;
+                if (adj==0)
+                    return 270;
+                return 360 - toDeg((float)Math.Atan(opp/adj));
+            }
+            return 0;
+        }
+
+        // Convert radians to degrees
+        private static float toDeg(float param) {
+            return param / (float) Math.PI * 180;
+        }
 	
 		// Returns list of angles between each adjacent vector.
 		private static List<float> findAnglesForPoints (List<Vector2> entrancePoints) {
@@ -148,7 +188,8 @@ namespace SwypeEmulatorDemo
 			for (int i=1; i < entrancePoints.Count; i++) {
 				Vector2 t1 = entrancePoints [i - 1];
 				Vector2 t2 = entrancePoints [i];
-				results.Add (Vector2.Angle (t1, t2));	// Unity library
+				//results.Add (Vector2.Angle(t1, t2));	// Unity library
+                results.Add(angleFromPoints(t1, t2));
 			}
 			return results;
 		}

@@ -67,5 +67,13 @@ namespace SwypeEmulatorDemo
         {
             tex = param;
         }
+
+        public List<Vector2> getPoints()
+        {
+            List<Vector2> temp = new List<Vector2>();
+            for (int i = 0; i < points.Count; i++)
+                temp.Add((Vector2)points[i]);
+            return temp;
+        }
     }
 }
