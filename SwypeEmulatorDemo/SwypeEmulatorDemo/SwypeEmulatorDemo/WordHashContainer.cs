@@ -8,8 +8,6 @@
 // *
 // ***
 //
-// Note this class is under construction and should not be implemented in
-// the demo yet
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,15 +23,9 @@ namespace SwypeEmulatorDemo
 	public class WordHashContainer
 	{
 		private ArrayList words;
-		private String hash;
+		private int code;
 
-		public WordHashContainer(String code)
-		{
-			words = new ArrayList();
-			hash=code;
-		}
-
-		public WordHashContainer(String code,String first)
+		public WordHashContainer(int code,String first)
 		{
 			words = new ArrayList();
 			hash=code;
@@ -44,10 +36,10 @@ namespace SwypeEmulatorDemo
 		// concatenated with the hash code of the second character
 		public int GetHashCode()
 		{
-			return hash[0] * 100 + hash[1];
+			return code;
 		}
 
-		public List<String> getListOfWords() { return words; }
+		public List<String> getListOfWords() { return words.Sort(); }
 		public void Add(String param) { words.Add(param); }
 	}
 }
