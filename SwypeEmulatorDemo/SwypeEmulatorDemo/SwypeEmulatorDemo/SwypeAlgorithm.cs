@@ -45,6 +45,7 @@ namespace SwypeEmulatorDemo
     {
         private List<string> dictionary; // assumed to be in alphabetical order
         private float[,] mat; // matrix for algorithm
+        private DictionaryController dicttemp;
         // not sure why the weights are needed <--- Probably used to find closest matches.
         private float[] wei; // weights for the angles
 
@@ -56,11 +57,13 @@ namespace SwypeEmulatorDemo
             // add words to dictionary
         }
 
-        /////////////////////////////////// MAIN ALGORITHM /////////////////////////////////////
+        /////////////////////////////////// TEST HARNESS /////////////////////////////////////
         public void algorithm(String param, List<Vector2> vectors)
         {
             // initialization code
             dictionary.Add("hello");
+            dictionary.Add("kill"); // This is a good base case.
+            dicttemp = new DictionaryController();
             dictionary.Sort();
             List<string> possibilities = new List<String>();
             if(param.Length > 0)
@@ -101,6 +104,8 @@ namespace SwypeEmulatorDemo
             return j==word.Length;
         }
 
+        // Main Algorithm
+        // Tyler's Code
         private List<string> findBestMatches(String input, List<Vector2> entrancePoints){
             // this is the main algorithm. It has room to be optimized a lot but
             // theoretically it should work. Although, I do not understand it
@@ -122,7 +127,9 @@ namespace SwypeEmulatorDemo
 			wei[weights.Count + 1] = 180;
 			List<SwipeDictionaryObject> arr = new List<SwipeDictionaryObject> ();
 			
-			// TODO: Optimiaztion, possibly using binary search.
+			/*This Code is Deprecated - Now controlled by DictionaryController.cs
+            
+            // TODO: Optimiaztion, possibly using binary search.
 			for(int i=0; i < words.Count; i++) {
 				string word = words [i];
 				if(matches(input, word)) {
@@ -131,9 +138,11 @@ namespace SwypeEmulatorDemo
 					tmp.word = word;
 					arr.Add (tmp);
 				}
-			}
+			}*/
+
+            // called read from file in the constructor of the dictionary controller
 			
-			arr.Sort ();
+			arr.Sort();
 			
 			// Return sorted list of results.
 			// TODO: Can probably do this at the same time as the dictionary object construction.
@@ -146,7 +155,7 @@ namespace SwypeEmulatorDemo
         }
 		/***************** Helper functions *****************/
 
-        private static float angleFromPoints(Vector2 start,Vector2 end){
+        private static float angleFromPoints(Vector2 start, Vector2 end){
             float opp, adj;
             if(start.X <= end.X && start.Y <= end.Y){
                 opp = end.Y - start.Y;
