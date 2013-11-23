@@ -14,14 +14,14 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Graphics;
-using Microsoft.Xna.Input;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace SwypeEmulatorDemo{
 	public class CScanner : System.IO.StringReader{
 		private string current;
 
-		public Scanner(string file) : base(file){
+		public CScanner(string file) : base(file){
 			readNext();
 		}
 
@@ -32,12 +32,12 @@ namespace SwypeEmulatorDemo{
 			int next=this.Read();
 			// while the next byte is a character and not a white space
 			// add it to the string builder
-			for(;!char.IsWhiteSpace(nextChar)&&next>=0;next=this.Read())
+			for(;!char.IsWhiteSpace((char)next)&&next>=0;next=this.Read())
 				builder.Append((char)next);
 			// while there is white space remaining skip the whitespace
 			while(this.Peek()>=0&&(char.IsWhiteSpace((char)this.Peek())))
 				this.Read();
-			current=(builder.Length>0)?builder.toString():null;
+			current=(builder.Length>0)?builder.ToString():null;
 		}
 
 		// returns if this scanner currently has a string to return

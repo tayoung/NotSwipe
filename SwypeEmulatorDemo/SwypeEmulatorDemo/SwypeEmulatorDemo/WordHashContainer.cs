@@ -22,24 +22,24 @@ namespace SwypeEmulatorDemo
 {
 	public class WordHashContainer
 	{
-		private ArrayList words;
+		private List<String> words;
 		private int code;
 
-		public WordHashContainer(int code,String first)
+		public WordHashContainer(int hash,String first)
 		{
-			words = new ArrayList();
-			hash=code;
+			words = new List<String>();
+			code=hash;
 			words.Add(first);
 		}
 
 		// hashcode is the ascii value of the first character in hash
 		// concatenated with the hash code of the second character
-		public int GetHashCode()
+		public override int GetHashCode()
 		{
 			return code;
 		}
 
-		public List<String> getListOfWords() { return words.Sort(); }
+        public List<String> getListOfWords() { words.Sort(); return words; }
 		public void Add(String param) { words.Add(param); }
 	}
 }
