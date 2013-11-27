@@ -131,9 +131,13 @@ namespace SwypeEmulatorDemo
 			wei[weights.Count + 1] = 180;
 			List<SwipeDictionaryObject> arr = new List<SwipeDictionaryObject> ();
 			
-			/*This Code is Deprecated - Now controlled by DictionaryController.cs
-            
-            // TODO: Optimiaztion, possibly using binary search.
+			
+
+            List<String> answers = dicttemp.getHashMatches(input);
+
+            //This Code is Deprecated - Update to use Dictionary hashes.
+            /*
+            // TODO: Optimization, possibly using binary search.
 			for(int i=0; i < words.Count; i++) {
 				string word = words [i];
 				if(matches(input, word)) {
@@ -144,23 +148,47 @@ namespace SwypeEmulatorDemo
 				}
 			}*/
 
-            List<String> answers = dicttemp.getHashMatches(input);
+            for (int i = 0; i < answers.Count; i++)
+            {
+                string word = answers[i];
+                if (matches(input, word))
+                {
+                    SwipeDictionaryObject tmp = new SwipeDictionaryObject();
+                    tmp.weight = (words.Count - i) / (words.Count * 180 + wlcs(input, word));
+                    tmp.word = word;
+                    arr.Add(tmp);
+                }
+            }
+
 
             // called read from file in the constructor of the dictionary controller
 			
-			//arr.Sort();
+			arr.Sort();
 
-            answers.Sort();
+            //answers.Sort();
+
+            /*for (int i = 0; i < answers.Count; i++)
+            {
+                //Console.WriteLine("Answer #" + i + "length: " + answers[i].Length);
+                //Console.WriteLine("Input length: " + input.Length);
+                //NEEDS TO BE REFACTORED TO PREVENT DOUBLE LETTER WORDS FROM BEING EXCLUDED SUCH AS TEEPEE (TEPE) or ASS (AS).
+                if (answers[i].Length > input.Length) //checks if answer is longer than string inputted, very very unlikely that the string is longer.
+                {
+                    //Console.WriteLine(answers[i]);
+                    answers.RemoveAt(i--); //decrements i so that the new string at the previous index is examined.
+                    //Console.WriteLine(answers[i]);
+                }
+            }*/
 			
 			// Return sorted list of results.
 			// TODO: Can probably do this at the same time as the dictionary object construction.
-			/*List<string> results = new List<string> ();
+			List<string> results = new List<string> ();
 			foreach(SwipeDictionaryObject o in arr) {
 				results.Add (o.word);
-			}*/
+			}
 			
-			//return results;
-            return answers;
+			return results;
+            //return answers;
         }
 		/***************** Helper functions *****************/
 

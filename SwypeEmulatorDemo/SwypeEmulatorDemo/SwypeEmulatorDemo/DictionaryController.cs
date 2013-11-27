@@ -70,7 +70,15 @@ namespace SwypeEmulatorDemo
 			// returns the List of words that the word Hash Container has that
 			// is stored with the hashcode of the parameter string
             Console.WriteLine((hash[0] + 100) * 1000 + (hash[1] + 100));
-			return words[(hash[0]+100) * 1000 + (hash[1]+100)].getListOfWords();
+            List<String> result;
+            try{
+                result = words[(hash[0] + 100) * 1000 + (hash[1] + 100)].getListOfWords();
+            }
+            catch(KeyNotFoundException e) {
+                //result = null;
+                result = new List<String>();
+            }
+            return result;
 		}
 	}
 }
