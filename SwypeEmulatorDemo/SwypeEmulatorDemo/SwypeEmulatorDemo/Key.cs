@@ -35,12 +35,12 @@ namespace SwypeEmulatorDemo
 
         public bool wasClicked(Vector2 param)
         {
-            if (param.X > position.X && param.X < position.X + width && param.Y > position.Y && param.Y < position.Y + height)
+            if ((param.X > position.X) && (param.X < position.X + width) && (param.Y > position.Y) && (param.Y < position.Y + height))
                 return true;
             return false;
         }
 
-        public void draw(SpriteBatch spriteBatch,Texture2D tex,SpriteFont font)
+        public void draw(SpriteBatch spriteBatch, Texture2D tex, SpriteFont font)
         {
             spriteBatch.Draw(tex, position, Color.White);
             spriteBatch.DrawString(font, value, new Vector2(position.X + 8, position.Y + 2), Color.White);

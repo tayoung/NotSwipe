@@ -45,7 +45,7 @@ namespace SwypeEmulatorDemo
     {
         private List<string> dictionary; // assumed to be in alphabetical order
         private float[,] mat; // matrix for algorithm
-        private DictionaryController dicttemp;
+        private DictionaryController dicttemp = new DictionaryController();
         // not sure why the weights are needed <--- Probably used to find closest matches.
         private float[] wei; // weights for the angles
 
@@ -61,10 +61,11 @@ namespace SwypeEmulatorDemo
         public void algorithm(String param, List<Vector2> vectors)
         {
             // initialization code
-            dictionary.Add("hello");
-            dictionary.Add("kill"); // This is a good base case.
-            dicttemp = new DictionaryController();
-            dictionary.Sort();
+            //dictionary.Add("alpaca");
+            //dictionary.Add("hello");
+            //dictionary.Add("kill"); // This is a good base case.
+            
+            //dictionary.Sort();
             List<string> possibilities = new List<String>();
             if(param.Length > 0)
                 possibilities = findBestMatches(param, vectors);
@@ -120,8 +121,11 @@ namespace SwypeEmulatorDemo
 
 			List<float> weights = findAngleDifferences (findAnglesForPoints (entrancePoints));
 			
+            // Tyler mod: i+1 was out of bounds
+            // index out of bounds for array?
 			for (int i=0; i < weights.Count; i++) {
-				wei [i + 1] = weights [i];
+                //Console.WriteLine(weights.Count);
+                wei[i + 1] = weights[i];
 			}
 			wei[0] = 180;
 			wei[weights.Count + 1] = 180;
@@ -140,18 +144,23 @@ namespace SwypeEmulatorDemo
 				}
 			}*/
 
+            List<String> answers = dicttemp.getHashMatches(input);
+
             // called read from file in the constructor of the dictionary controller
 			
-			arr.Sort();
+			//arr.Sort();
+
+            answers.Sort();
 			
 			// Return sorted list of results.
 			// TODO: Can probably do this at the same time as the dictionary object construction.
-			List<string> results = new List<string> ();
+			/*List<string> results = new List<string> ();
 			foreach(SwipeDictionaryObject o in arr) {
 				results.Add (o.word);
-			}
+			}*/
 			
-			return results;
+			//return results;
+            return answers;
         }
 		/***************** Helper functions *****************/
 
